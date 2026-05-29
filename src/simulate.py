@@ -5,7 +5,7 @@ from src.mfs_functions import *
 from src.particular_functions import *
 import os
 
-gpu = True
+gpu = False
 if gpu:
     print('using gpu')
     import cupy as np

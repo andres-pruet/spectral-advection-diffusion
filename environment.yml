@@ -4,9 +4,7 @@ channels:
   - conda-forge
 dependencies:
   - numpy
+  - numba
   - scipy
-  # - time
-  # - pickle
   - matplotlib
-  # - datetime
   - cupy

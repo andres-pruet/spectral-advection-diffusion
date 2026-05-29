@@ -1,6 +1,6 @@
 from src.particular_functions import get_x_deriv,get_z_deriv
 
-gpu = True # make sure this matches in the other files
+gpu = False # make sure this matches in the other files
 if gpu:
     print('using gpu')
     import cupy as np

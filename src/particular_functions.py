@@ -1,4 +1,4 @@
-gpu = True # make sure this matches in the other files
+gpu = False # make sure this matches in the other files
 if gpu:
     print('using gpu')
     import cupy as np

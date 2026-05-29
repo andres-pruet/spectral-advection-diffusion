@@ -14,7 +14,7 @@ $ conda activate sad
 
 # Usage Instructions
 
-First, the user must set the **gpu** variable to the desired value (True or False) at the head of all four files: **main.ipynb**, **simulate.py**, **mfs_functions.py**, and **particular_functions.py**. It is true by default.
+First, the user must set the **gpu** variable to the desired value (True or False) at the head of all four files: **main.ipynb**, **simulate.py**, **mfs_functions.py**, and **particular_functions.py**. **gpu** is **False** by default.
 
 ## Simulation Setup and Execution
 
