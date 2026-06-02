@@ -19,7 +19,7 @@ import os
 
 
 ## parameters ##
-timestamp = '2026-05-28--12_47_58'
+timestamp = '2026-06-01--14_09_39'
 solution_types = ['C', 'Cp', 'Ch']
 interval = 100
 plots = False
