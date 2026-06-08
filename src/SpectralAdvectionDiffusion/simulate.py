@@ -315,6 +315,8 @@ class simulate:
                 np.save(f'./data/plots/{self.sim_date}/timestep_vals',timestep_vals.get())
                 np.save(f'./data/plots/{self.sim_date}/xx',self.xx.get())
                 np.save(f'./data/plots/{self.sim_date}/zz',self.zz.get())
+                np.save(f'./data/plots/{self.sim_date}/shape_params',self.shape_params.get())
+                np.save(f'./data/plots/{self.sim_date}/obstacle',self.obstacle)
             else:
                 os.mkdir(f'./data/plots/{self.sim_date}/')
                 np.save(f'./data/plots/{self.sim_date}/C_plots',C_plots)
@@ -323,6 +325,8 @@ class simulate:
                 np.save(f'./data/plots/{self.sim_date}/timestep_vals',timestep_vals)
                 np.save(f'./data/plots/{self.sim_date}/xx',self.xx)
                 np.save(f'./data/plots/{self.sim_date}/zz',self.zz)
+                np.save(f'./data/plots/{self.sim_date}/shape_params',self.shape_params)
+                np.save(f'./data/plots/{self.sim_date}/obstacle',self.obstacle)
     
     def solve_modified_helmholtz(self,rhs,lambdasq,Ainv,big_M1_solve,bigBC2,block_C,bigM1):
         return InvYukawa(rhs,lambdasq + self.kk**2, self.SIMat, self.Lz, self.Nz, self.Nx, Ainv, block_C, bigM1, self.y_ids, self.x_idxs, self.y_idxs)

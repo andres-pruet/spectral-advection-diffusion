@@ -19,22 +19,23 @@ import os
 
 
 ## parameters ##
-timestamp = '2026-06-01--14_09_39'
+timestamp = '2026-06-08--07_55_47'
 solution_types = ['C', 'Cp', 'Ch']
 interval = 100
-plots = False
+plots = True
 gifs = True
-show_figs = False
 
 
 # In[27]:
 
 
-def make_plots(timestamp, solution_types, show_figs):
+def make_plots(timestamp, solution_types):
     timestep_vals = np.load(f'./data/plots/{timestamp}/timestep_vals.npy')
     # print(timestep_vals)
     xx = np.load(f'./data/plots/{timestamp}/xx.npy')
     zz = np.load(f'./data/plots/{timestamp}/zz.npy')
+    params = np.load(f'./data/plots/{timestamp}/shape_params.npy')
+    obs = np.load(f'./data/plots/{timestamp}/obstacle.npy')
     if not os.path.isdir(f'./data/figures/{timestamp}/'):
         os.mkdir(f'./data/figures/{timestamp}/')
     for soln_type in solution_types:
@@ -48,14 +49,17 @@ def make_plots(timestamp, solution_types, show_figs):
             cbar = plt.colorbar(scat)
             cbar.set_label('concentration')
             ax.set_title(f'{soln_type} t = {t}')
+            if obs:
+                ax.add_patch(plt.Circle((params[0], params[1]), params[2], fill=1, color='k'))
             plt.savefig(f'./data/figures/{timestamp}/{soln_type}_{i}.png', format='png')
-            if show_figs:
-                plt.show()
+            plt.close()
 
 def make_gifs(timestamp, solution_types, interval):
     timestep_vals = np.load(f'./data/plots/{timestamp}/timestep_vals.npy')
     xx = np.load(f'./data/plots/{timestamp}/xx.npy')
     zz = np.load(f'./data/plots/{timestamp}/zz.npy')
+    params = np.load(f'./data/plots/{timestamp}/shape_params.npy')
+    obs = np.load(f'./data/plots/{timestamp}/obstacle.npy')
     for soln_type in solution_types:
         fname = f'./data/plots/{timestamp}/{soln_type}_plots.npy'
         plots = np.load(fname)
@@ -65,6 +69,8 @@ def make_gifs(timestamp, solution_types, interval):
         cbar.set_label('concentration')
         ax.set_xlabel('[m]')
         ax.set_ylabel('[m]')
+        if obs:
+            ax.add_patch(plt.Circle((params[0], params[1]), params[2], fill=1, color='k'))
 
         def update(frame):
             scat.set_array(plots[:,:,frame])
@@ -79,7 +85,10 @@ def make_gifs(timestamp, solution_types, interval):
 
 
 if plots:
-    make_plots(timestamp,solution_types, show_figs)
+    print('making figures...')
+    make_plots(timestamp,solution_types)
 if gifs:
+    print('making gifs...')
     make_gifs(timestamp,solution_types,interval)
 
+print('finished plotting.')
