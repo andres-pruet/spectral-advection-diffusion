@@ -19,8 +19,8 @@ import os
 
 
 ## parameters ##
-timestamp = '2026-06-08--07_55_47'
-solution_types = ['C', 'Cp', 'Ch']
+timestamp = '2026-06-08--13_24_32'
+solution_types = ['C']
 interval = 100
 plots = True
 gifs = True
