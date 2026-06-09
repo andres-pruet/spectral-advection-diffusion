@@ -20,7 +20,7 @@ import matplotlib.cm as cm
 
 
 ## parameters ##
-timestamp = '2026-06-08--16_55_11'
+timestamp = '2026-06-08--13_24_32'
 solution_types = ['C']
 interval = 100
 plots = 0
