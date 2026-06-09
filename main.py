@@ -18,7 +18,7 @@ plotting = 1
 dx = 0.2 + 2/30
 Lx = 24
 Lz = 12
-stop_time = .3
+stop_time = 1.
 nsteps_per_second = 40*1/.3
 D = 1
 gamma = 1/2
@@ -27,7 +27,7 @@ c = 1/8
 # initial conditions for C
 source_location = np.array([12,4])
 source_spread = 0.5
-source_type = 'puff'
+source_type = 'plume'
 n_copies = 10
 
 # obstacle parameters

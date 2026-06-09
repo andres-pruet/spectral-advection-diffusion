@@ -13,16 +13,17 @@ import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import os
+import matplotlib.cm as cm
 
 
 # In[ ]:
 
 
 ## parameters ##
-timestamp = '2026-06-08--07_55_47'
-solution_types = ['C', 'Cp', 'Ch']
+timestamp = '2026-06-08--16_55_11'
+solution_types = ['C']
 interval = 100
-plots = True
+plots = 0
 gifs = True
 
 
@@ -49,6 +50,7 @@ def make_plots(timestamp, solution_types):
             cbar = plt.colorbar(scat)
             cbar.set_label('concentration')
             ax.set_title(f'{soln_type} t = {t}')
+            ax.set_aspect('equal')
             if obs:
                 ax.add_patch(plt.Circle((params[0], params[1]), params[2], fill=1, color='k'))
             plt.savefig(f'./data/figures/{timestamp}/{soln_type}_{i}.png', format='png')
@@ -67,13 +69,18 @@ def make_gifs(timestamp, solution_types, interval):
         scat = ax.pcolor(xx,zz,plots[:,:,0])
         cbar = plt.colorbar(scat)
         cbar.set_label('concentration')
+        
         ax.set_xlabel('[m]')
         ax.set_ylabel('[m]')
+        ax.set_aspect('equal')
         if obs:
             ax.add_patch(plt.Circle((params[0], params[1]), params[2], fill=1, color='k'))
 
         def update(frame):
             scat.set_array(plots[:,:,frame])
+            scat.set_clim(vmin=np.min(plots[:,:,frame]), vmax=np.max(plots[:,:,frame]))
+            # cbar = plt.colorbar(scat)
+            # cbar.set_label('concentration')
             ax.set_title(f'{soln_type}: t = {round(timestep_vals[frame],3)}')
             return scat
 

@@ -7,4 +7,4 @@ dependencies:
   - numba
   - scipy
   - matplotlib
-  - cupy
+  # - cupy ## this one breaks on macs. Users who don't have cupy installed will have to install it manually.

@@ -254,7 +254,7 @@ class simulate:
             self.S0 = self.Sn
         elif source_type == 'plume':
             self.S0 = get_initial(self.X,self.Z,self.Lx,source_location,source_spread,self.n_copies) / self.dt
-            self.Sn = self.S0
+            self.Sn = self.S0 + 0
             self.C_initial = 0*self.Sn
 
         for n in np.arange(self.nsteps):
@@ -332,7 +332,7 @@ class simulate:
         return InvYukawa(rhs,lambdasq + self.kk**2, self.SIMat, self.Lz, self.Nz, self.Nx, Ainv, block_C, bigM1, self.y_ids, self.x_idxs, self.y_idxs)
 
     def get_first_step(self):
-        rhs = get_rhs_1step(self.C_initial,self.dt,self.D,self.Ux,self.Uz,self.Lx,self.Dcheb,self.kk,self.ik) - self.S0/self.D/self.dt
+        rhs = get_rhs_1step(self.C_initial,self.dt,self.D,self.Ux,self.Uz,self.Lx,self.Dcheb,self.kk,self.ik) - self.S0/self.D
         return self.solve_modified_helmholtz(rhs,self.lambdasq,self.bigAinv0,self.big_M1_solve0,self.bigBC20,self.block_C0,self.bigM10)
 
     def step_forward(self,C_lag1,C_lag2,Ux_lag1,Uz_lag1,Ux_lag2,Uz_lag2,S_lag1,S_lag2):
